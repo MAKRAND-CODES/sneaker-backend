@@ -191,6 +191,7 @@ mongoose.connect(
 .catch((err) => {
   console.log("❌ DB Error:", err);
 });*/
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -251,7 +252,7 @@ app.get("/api/seed", async (req, res) => {
 });
 
 // ✅ DB CONNECT + SERVER START
-mongoose.connect("mongodb://admin:admin123@ac-j473qhz-shard-00-00.xfi8fdd.mongodb.net:27017,ac-j473qhz-shard-00-01.xfi8fdd.mongodb.net:27017,ac-j473qhz-shard-00-02.xfi8fdd.mongodb.net:27017/sneakerDB?ssl=true&replicaSet=atlas-nylq9b-shard-0&authSource=admin")
+mongoose.connect(process.env.MONGO_URI)
 .then(() => {
   console.log("MongoDB Connected");
 
